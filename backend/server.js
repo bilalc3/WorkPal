@@ -3,6 +3,7 @@ require("dotenv").config()
 const workoutRouter = require('./router/workRouter')
 const app = express()
 const mongoose = require("mongoose")
+const userRouter = require('./router/userRouter')
 
 // midddleware
 app.use(express.json()) // checks for post body => json
@@ -14,6 +15,8 @@ app.use((req, res, next) => {
 
 // routing 
 app.use("/api/workouts", workoutRouter)
+app.use("/api/user", userRouter)
+
 
 //connecting to the db 
 mongoose.connect(process.env.MONGO_URL)
