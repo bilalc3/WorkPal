@@ -9,6 +9,18 @@ const workScheme = new Schema({
     cycles : {
         type: Number, 
         required: true
+    }, 
+    reps: {
+        type: Number, 
+        requred: true
+    }, 
+    comments: {
+        type: String, 
+        required: false
+    }, 
+    user_id: {
+        type: String, 
+        required: true
     }
 
 }, {timestamps: true});

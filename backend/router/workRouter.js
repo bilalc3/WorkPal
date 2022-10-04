@@ -1,8 +1,12 @@
 const express = require('express')
 const Work = require("../Models/WorkModel.js")
-const router = express.Router()
 const mongoose = require("mongoose")
 const {postController, singleWork, getWorks, deleteWork, updateWork} = require("../Controllers/WorkController")
+const requireAuth = require("../middleware/requireAuth")
+
+const router = express.Router()
+//middleware to requrie authorizaion before routes
+router.use(requireAuth)
 
 // getting all works
 router.get("/", getWorks)

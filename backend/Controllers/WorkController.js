@@ -4,7 +4,8 @@ const Work = require("../Models/WorkModel.js")
 
 // getting all works 
 const getWorks = async (req, res) => {
-    const works = await Work.find({}).sort({createdAt: -1})
+    const user_id = req.user._id
+    const works = await Work.find({user_id}).sort({createdAt: -1})
     res.status(200).json(works)
 
 }
@@ -27,11 +28,13 @@ const singleWork = async(req, res) => {
 
 // adding a new work
 const postController = async (req, res) => {
-    const {title, cycles} = req.body
+    const {title, cycles, reps, comments} = req.body
     try {
-        const work = await Work.create({title, cycles})
+        // from middelware we have id
+        const user_id = req.user._id
+        const work = await Work.create({title, cycles, reps, comments, user_id})
         res.status(200).json(work)
-    } catch (error) {
+    } catch (error) { 
         res.status(400).json({error: error.message})
     }
 }

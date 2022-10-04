@@ -7,6 +7,7 @@ const userRouter = require('./router/userRouter')
 
 // midddleware
 app.use(express.json()) // checks for post body => json
+// Current req
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next()
